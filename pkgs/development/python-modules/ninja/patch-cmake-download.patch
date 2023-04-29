@@ -1,0 +1,44 @@
+diff '--color=auto' -u orig/CMakeLists.txt mod/CMakeLists.txt
+--- orig/CMakeLists.txt	2023-04-29 01:01:20.160546769 +0100
++++ mod/CMakeLists.txt	2023-04-29 01:13:02.041345596 +0100
+@@ -58,24 +58,7 @@
+ #-----------------------------------------------------------------------------
+ # Download source
+ #-----------------------------------------------------------------------------
+-if(NOT DEFINED Ninja_SOURCE_DIR)
+-  set(Ninja_SOURCE_DIR "${CMAKE_SOURCE_DIR}/Ninja-src")
+-
+-  # Download selected source archive
+-  ExternalProject_add(download_ninja_source
+-    SOURCE_DIR ${Ninja_SOURCE_DIR}
+-    URL ${${src_archive}_url}
+-    URL_HASH SHA256=${${src_archive}_sha256}
+-    DOWNLOAD_DIR ${ARCHIVE_DOWNLOAD_DIR}
+-    USES_TERMINAL_DOWNLOAD 1
+-    CONFIGURE_COMMAND ""
+-    BUILD_COMMAND ""
+-    BUILD_IN_SOURCE 1
+-    INSTALL_COMMAND ""
+-    ${ep_download_no_progress_args}
+-    )
+-  message(STATUS "download_ninja_source - URL: ${${src_archive}_url}")
+-elseif(NOT EXISTS ${Ninja_SOURCE_DIR})
++if(NOT EXISTS ${Ninja_SOURCE_DIR})
+   message(FATAL_ERROR "Ninja_SOURCE_DIR is set to a nonexistent directory")
+ endif()
+ 
+@@ -114,8 +97,6 @@
+   USES_TERMINAL_BUILD 1
+   INSTALL_COMMAND ""
+   CMAKE_CACHE_ARGS ${_cache_args}
+-  DEPENDS
+-    download_ninja_source
+   )
+ set(ninja_executable ${Ninja_BINARY_DIR}/ninja${CMAKE_EXECUTABLE_SUFFIX})
+ set(NINJA_BUILD_LAST_STEP "build")
+Common subdirectories: orig/docs and mod/docs
+Common subdirectories: orig/.git and mod/.git
+Common subdirectories: orig/.github and mod/.github
+Common subdirectories: orig/scripts and mod/scripts
+Common subdirectories: orig/src and mod/src
+Common subdirectories: orig/tests and mod/tests

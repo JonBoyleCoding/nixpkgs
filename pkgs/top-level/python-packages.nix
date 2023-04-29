@@ -6406,6 +6406,10 @@ self: super: with self; {
 
   nanoleaf = callPackage ../development/python-modules/nanoleaf { };
 
+  ninja = callPackage ../development/python-modules/ninja {
+    ninja-build = pkgs.ninja;
+  };
+
   nomadnet = callPackage ../development/python-modules/nomadnet { };
 
   nox = callPackage ../development/python-modules/nox { };
